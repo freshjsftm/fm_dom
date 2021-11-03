@@ -1,44 +1,34 @@
 'use strict';
-const state = [];
-const form = document.getElementById('root-form');
-const list = document.getElementById('list');
 
-form.addEventListener('submit', (e)=>{
-  e.preventDefault();
-  const {target: { textInput: {value: inputText} }} = e;
-  const inputValue = inputText.trim();
-  const validatorName = /^[A-Z][a-z]{2,12}$/;
-  if(validatorName.test(inputValue) && !state.includes(inputValue)){
-    state.push(inputValue);
-    form.reset();
-    const li = createElement('li', {classNames:['item']}, document.createTextNode(inputValue));
-    const btn = createElement('button', 
-      {typeEvent:'click', onClick:deleteHandler.bind(li), dataValue:inputValue}, 
-      document.createTextNode('X'));
-    li.append(btn);
-    list.append(li);
-  }
-  console.dir(state);
-})
+const btn = document.getElementById('btn');
+btn.addEventListener('click', btnHanler);
+function btnHanler(e){
+
+}
+
+
+
+const identificator = setTimeout(()=>{
+  console.log('hi!')
+},300)
+
+clearTimeout(identificator);
+
+
 /*
-добавить кнопку удаления для каждого пункта списка
-по нажатию на кнопку удалять
-- пункт списка сос траницы
-- значение из массива
+написать функцию, которая выводит последовательно числа 
+в консоль от 1 до 10 через 0,5 секунды
 */
-function deleteHandler({target:{dataset:{value}}}){
-  this.remove();
-  state.splice(state.indexOf(value),1);
-}
-function createElement(type, {dataValue = '', classNames=[], typeEvent='', onClick=null}, ...children){
-  const elem = document.createElement(type);
-  if(dataValue){
-    elem.dataset.value = dataValue;
+const c1 = counter();
+function counter(){
+  let i=1;
+  return function(){
+    const id = setInterval(()=>{
+      console.log(i++)
+      if(i>10){
+        clearInterval(id);
+      }
+    }, 500)
   }
-  if(classNames.length){
-    elem.classList.add(...classNames);
-  }
-  elem.addEventListener(typeEvent, onClick);//for example
-  elem.append(...children);
-  return elem;
 }
+c1();
