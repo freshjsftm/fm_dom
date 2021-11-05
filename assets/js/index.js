@@ -1,34 +1,19 @@
 'use strict';
 
-console.log('start'); //
 
-setTimeout(()=>{
-  console.log('setTimeout');
-}, 0)
 
-const pr1 = new Promise((resolve, reject)=>{
-  console.log('Promise start');
-  true ? resolve(): reject();
-  console.log('Promise end');
-  // for(let i=0; i<1000000; i++){console.log(i);}
-  // setTimeout(()=>{
-  //   console.log('setTimeout 2');
-  // }, 0)
-})
-
-pr1
-  .then(()=>{
-    console.log('resolve');
+function handlePromise(promise){
+  return promise.then((data)=>{
+    console.log('in function: ', data)
   })
-  .catch(()=>{
-    console.log('reject');
+  .catch((err)=>{
+    console.log('in function: ', err)
   })
-  .finally(()=>{
-    console.log('finally');
-  })
+}
 
-console.log('end');
-
+const number = Promise.resolve(10);
+handlePromise(number);
+handlePromise(Promise.reject('error'));
 
 
 
