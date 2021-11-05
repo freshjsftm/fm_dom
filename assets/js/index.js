@@ -1,22 +1,34 @@
 'use strict';
 
-//try{}catch{}
-//try{}finally{} 
+console.log('start'); //
 
+setTimeout(()=>{
+  console.log('setTimeout');
+}, 0)
 
-console.log('start');
+const pr1 = new Promise((resolve, reject)=>{
+  console.log('Promise start');
+  true ? resolve(): reject();
+  console.log('Promise end');
+  // for(let i=0; i<1000000; i++){console.log(i);}
+  // setTimeout(()=>{
+  //   console.log('setTimeout 2');
+  // }, 0)
+})
 
-try{
-  console.log('try 1');
-  if(!true){
-    throw new Error();
-  }
-  console.log('try 2');
-  console.log('try 3');
-}catch{
-  console.log('catch error');
-}finally{
-  console.log('finally');
-}
+pr1
+  .then(()=>{
+    console.log('resolve');
+  })
+  .catch(()=>{
+    console.log('reject');
+  })
+  .finally(()=>{
+    console.log('finally');
+  })
 
 console.log('end');
+
+
+
+
