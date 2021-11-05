@@ -1,23 +1,22 @@
 'use strict';
 
-function loadImage(path){
-  const image = new Image();
-  image.src = path;
-  return new Promise((resolve, reject)=>{
-    image.addEventListener('load', ()=>{
-      resolve(image);
-    })
-    image.addEventListener('error', ()=>{
-      reject(new Error('path invalid'))
-    })
-  })
+//try{}catch{}
+//try{}finally{} 
+
+
+console.log('start');
+
+try{
+  console.log('try 1');
+  if(!true){
+    throw new Error();
+  }
+  console.log('try 2');
+  console.log('try 3');
+}catch{
+  console.log('catch error');
+}finally{
+  console.log('finally');
 }
 
-
-loadImage('https://friendofthesea.org/public/news/blue-ocean-28668-2560x1600.jpg')
-.then((elem)=>{
-  document.body.prepend(elem);
-})
-.catch((err)=>{
-  console.log(err)
-})
+console.log('end');
